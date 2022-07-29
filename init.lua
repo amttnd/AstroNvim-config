@@ -6,22 +6,43 @@ local config = {
     ["feline"] = function(config)
       local status_ok, feline = pcall(require, "feline.providers.vi_mode")
       if not status_ok then return config end
-      local C = require "default_theme.colors"
       local hl = require("core.status").hl
       config.components.active[1][1] = {
-        provider = function()
-          return ' '..feline.get_vim_mode()..' '
-        end,
-        hl = hl.mode()
+        provider = function() return " " .. feline.get_vim_mode() .. " " end,
+        hl = hl.mode(),
       }
       return config
-    end
+    end,
+    ["null-ls"] = function(config)
+      local null_ls = require "null-ls"
+      config.sources = {
+        -- code actions
+        null_ls.builtins.code_actions.eslint,
+        -- diagnostics
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.diagnostics.editorconfig_checker,
+        -- formatting
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.rustfmt,
+      }
+      config.on_attach = function(client)
+        if client.resolved_capabilities.document_formatting then
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            desc = "Auto format before save",
+            pattern = "<buffer>",
+            callback = vim.lsp.buf.formatting_sync,
+          })
+        end
+      end
+      return config
+    end,
   },
 
   mappings = {
     n = {
       ["<leader>h"] = { "<cmd>set hlsearch!<cr>", desc = "Toggle Highlight" },
-    }
+    },
   },
 }
 
