@@ -17,13 +17,8 @@ local config = {
       local status_ok, null_ls = pcall(require, "null-ls")
       if not status_ok then return config end
       config.sources = {
-        -- code actions
-        null_ls.builtins.code_actions.eslint,
-        -- diagnostics
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.diagnostics.editorconfig_checker,
         -- formatting
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettierd,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.rustfmt,
       }
@@ -32,7 +27,7 @@ local config = {
           vim.api.nvim_create_autocmd("BufWritePre", {
             desc = "Auto format before save",
             pattern = "<buffer>",
-            callback = vim.lsp.buf.formatting_sync,
+            callback = vim.lsp.buf.formatting,
           })
         end
       end
