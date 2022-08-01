@@ -38,6 +38,29 @@ local config = {
       end
       return config
     end,
+    ["tree-sitter"] = function(config)
+      config.ensure_installed = {
+        "html",
+        "css",
+        "scss",
+        "json",
+        "javascript",
+        "typescript",
+        "tsx",
+        "markdown",
+        "rust",
+        "sql",
+        "regex",
+        "yaml",
+        "toml",
+        "dockerfile",
+        "proto",
+        "graphql",
+        "prisma",
+        "lua",
+      }
+      return config
+    end,
   },
 
   mappings = {
