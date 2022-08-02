@@ -34,6 +34,8 @@ local config = {
       local status_ok, null_ls = pcall(require, "null-ls")
       if not status_ok then return config end
       config.sources = {
+        -- diagnostics
+        null_ls.builtins.diagnostics.eslint_d,
         -- formatting
         null_ls.builtins.formatting.prettierd,
         null_ls.builtins.formatting.stylua,
