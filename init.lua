@@ -19,6 +19,7 @@ local config = {
   plugins = {
     init = {
       ["wakatime/vim-wakatime"] = {},
+      ["gpanders/editorconfig.nvim"] = {},
     },
     ["feline"] = function(config)
       local status_ok, feline = pcall(require, "feline.providers.vi_mode")
