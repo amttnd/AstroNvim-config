@@ -77,12 +77,6 @@ local config = {
       return config
     end,
   },
-
-  mappings = {
-    n = {
-      ["<leader>h"] = { "<cmd>set hlsearch!<cr>", desc = "Toggle Highlight" },
-    },
-  },
 }
 
 return config
