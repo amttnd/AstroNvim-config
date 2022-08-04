@@ -20,6 +20,8 @@ local config = {
     init = {
       ["wakatime/vim-wakatime"] = {},
       ["gpanders/editorconfig.nvim"] = {},
+      ["lewis6991/spaceless.nvim"] = {},
+      ["sindrets/diffview.nvim"] = {}
     },
     ["feline"] = function(config)
       local status_ok, feline = pcall(require, "feline.providers.vi_mode")
