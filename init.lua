@@ -21,7 +21,7 @@ local config = {
       ["wakatime/vim-wakatime"] = {},
       ["gpanders/editorconfig.nvim"] = {},
       ["lewis6991/spaceless.nvim"] = {},
-      ["sindrets/diffview.nvim"] = {}
+      ["sindrets/diffview.nvim"] = {},
     },
     ["feline"] = function(config)
       local status_ok, feline = pcall(require, "feline.providers.vi_mode")
@@ -49,7 +49,7 @@ local config = {
           vim.api.nvim_create_autocmd("BufWritePre", {
             desc = "Auto format before save",
             pattern = "<buffer>",
-            callback = vim.lsp.buf.formatting,
+            callback = vim.lsp.buf.formatting_sync,
           })
         end
       end
